@@ -1,0 +1,42 @@
+{
+	"name": "dom-utility",
+	"version": "1.0.0",
+	"description": "DOM utility library",
+	"repository": "rozaverta/dom-utility",
+	"main": "cjs/index.js",
+	"module": "esm/dom-utility.js",
+	"unpkg": "umd/dom-utility.js",
+	"engines": {
+		"node": ">=0.10.0"
+	},
+	"scripts": {
+		"build": "rollup -c",
+		"prebuild": "rimraf cjs esm umd"
+	},
+	"files": [
+		"src",
+		"cjs",
+		"esm",
+		"umd",
+		"index.js",
+		"LICENSE",
+		"README.md"
+	],
+	"dependencies": {
+		"@babel/runtime": "^7.4.5",
+		"typeof-utility": "^1.0.5"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.4.5",
+		"@babel/plugin-transform-runtime": "^7.4.4",
+		"@babel/preset-env": "^7.4.5",
+		"rimraf": "^2.6.3",
+		"rollup": "^1.16.3",
+		"rollup-plugin-babel": "^4.3.3",
+		"rollup-plugin-commonjs": "^10.0.1",
+		"rollup-plugin-node-resolve": "^5.2.0",
+		"rollup-plugin-replace": "^2.2.0",
+		"rollup-plugin-size-snapshot": "^0.9.0",
+		"rollup-plugin-uglify": "^6.0.2"
+	}
+}
