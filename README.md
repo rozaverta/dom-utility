@@ -36,12 +36,12 @@ document.getElementById("app").appendChild(elm);
 
 ## Short description
 
-+ `ownerDocument(element)`: returns the element's document owner.
-+ `ownerWindow(element)`: returns the element's document window.
-+ `activeElement()`: return focused element safely.
-+ `offset(element, [fixed = false])`: return object `{ top: Number, left: Number, height: Number, width: Number}`, fixed is `true`, `false` or `"auto"`.
++ `ownerDocument(HTMLElement)` : Returns the element's document owner.
++ `ownerWindow(HTMLElement)` : Returns the element's document window.
++ `activeElement()` : Returns focused element safely.
++ `offset(HTMLElement, [fixed = false])` : Return object `{ top: Number, left: Number, height: Number, width: Number}`, fixed is `true`, `false` or `"auto"`.
 + `Collection`
-+ `createCollection(element, [context])` : create new `Collection` class object
++ `createCollection(element, [context])` : Create new `Collection` class object.
 
 + `page`
 	+ `pageWidth()`
@@ -52,22 +52,22 @@ document.getElementById("app").appendChild(elm);
 	+ `viewportHeight()`
 	+ `browserBarHeight()` : Returns the height of the mobile browser application bar.
 
-+ `attribute(element, name, [value])` : Set, get or remove HTMLElement attribute.
++ `attribute(HTMLElement, name, [value])` : Set, get or remove `HTMLElement` attribute.
 
 + `element`
-	+ `byId(selector)` : wrapper for `document.getElementById()` function.
-	+ `byQuery(selector, [element = document])` : wrapper for `document.querySelectorAll()` function.
-	+ `byQueryOne(selector, [element = document])` : wrapper for `document.querySelector()` function.
-	+ `byClassName(selector)` : wrapper for `getElementsByClassName()` function.
-	+ `byTag(selector)` : wrapper for `document.getElementsByTagName()` function.
-	+ `byName(selector)` : wrapper for `document.getElementsByName()` function.
-	+ `createElement(tagName, [attributes, parentElement])` : create new element, add attributes (events, styles too) and append to parent element. Returns the created element.
-	+ `append(element, child)`
-	+ `clone(element, [refIdsRenamedObject])` : clone the element and remove or replace id attributes.
-	+ `empty(element, [current = false])` : remove all child nodes.
+	+ `byId(selector)` : Wrapper for `document.getElementById()` function.
+	+ `byQuery(selector, [element = document])` : Wrapper for `document.querySelectorAll()` function.
+	+ `byQueryOne(selector, [element = document])` : Wrapper for `document.querySelector()` function.
+	+ `byClassName(selector)` : Wrapper for `getElementsByClassName()` function.
+	+ `byTag(selector)` : Wrapper for `document.getElementsByTagName()` function.
+	+ `byName(selector)` : Wrapper for `document.getElementsByName()` function.
+	+ `createElement(tagName, [attributes, parentElement])` : Create new element, add attributes (events, styles too) and append to parent element. Returns the created element.
+	+ `append(HTMLElement, child)`
+	+ `clone(HTMLElement, [refIdsRenamedObject])` : Clone the element and remove or replace id attributes.
+	+ `empty(HTMLElement, [current = false])` : Remove all child nodes.
 	+ `css(element, name, [value])` :
-	+ `matches(element, selector)` : `HTMLElement.matches()` wrapper and polyfill (if the browser does not support method)
-	+ `closest(element, selector)` : `HTMLElement.closest()` wrapper and polyfill (if the browser does not support method)
+	+ `matches(HTMLElement, selector)` : `HTMLElement.matches()` wrapper and polyfill (if the browser does not support method)
+	+ `closest(HTMLElement, selector)` : `HTMLElement.closest()` wrapper and polyfill (if the browser does not support method)
 
 + `classes`
 	+ `addClass(element, className)`
@@ -79,16 +79,16 @@ document.getElementById("app").appendChild(elm);
 	
 + `style`
 	+ `styleName(name)`: Get valid vendor style name (for example opacity -> WebkitOpacity)
-	+ `setStyle(element, name, value)`: Set element style
+	+ `setStyle(HTMLElement, name, value)`: Set element style
 	
 + `events`
-	+ `support(name)` : check support `touch`, `orientationChange`, `passive`
-	+ `ready(callback)` : add the event `DOMContentLoaded` or call a function if the page was loaded
+	+ `support(name)` : Check support `touch`, `orientationChange`, `passive`.
+	+ `ready(callback)` : Add the event `DOMContentLoaded` or call a function if the page was loaded.
 	+ `addNativeEvent(HTMLElement, name, callback, [capture = false])`
 	+ `removeNativeEvent(HTMLElement, name, callback, [capture = false])`
 	+ `addEvent(element, name, callback)`
 	+ `removeEvent(element, name, callback)`
-	+ `resize(callback, [remove])` : Add resize events (`resize`, `orientationchange`) to window element
+	+ `resize(callback, [remove])` : Add resize events (`resize`, `orientationchange`) to window element.
 	+ `scroll(callback, [remove])` : Add scroll event to window element.
 	+ `on(name, callback, [remove])` : Add event to window element.
 	+ `hover(element, enter, leave, [remove])`
