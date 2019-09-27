@@ -1,6 +1,6 @@
 {
 	"name": "dom-utility",
-	"version": "1.0.0",
+	"version": "2.0.0",
 	"description": "DOM utility library",
 	"repository": "rozaverta/dom-utility",
 	"main": "cjs/index.js",

@@ -88,7 +88,7 @@ if (isWeb() && typeof document !== "undefined") {
 let EventRename = {};
 
 let _support = {
-	touch: isWin && 'ontouchstart' in window,
+	touch: isWin && ( ('ontouchstart' in window) || window.TouchEvent || window.DocumentTouch && document instanceof DocumentTouch ),
 	orientationChange: isWin && 'orientationchange' in window,
 	passive: false
 };
@@ -136,14 +136,14 @@ function bindEvents(collection, events, callback, func) {
 	tap(collection, element => tap(events, event => bind(element, event, callback, func)))
 }
 
-function bindWindow(name, callback, removed) {
-	const rem = isFunc(removed);
+function bindWindow(name, callback) {
 	if (isWin && tap(name, n => bind(window, n, callback, adding))) {
-		rem && removed(() => {
+		return () => {
 			tap(name, n => bind(window, n, callback, removing))
-		})
-	} else if (rem) {
-		removed(noop)
+		}
+	}
+	else {
+		return noop
 	}
 }
 
@@ -211,31 +211,30 @@ export function removeEvent(element, name, callback) {
 	make(element, name, callback, removing)
 }
 
-export function hover(element, enter, leave, remove) {
-	const rem = isFunc(remove);
+export function hover(element, enter, leave) {
 	element = createCollection(element);
 	if (element.length) {
 		bindEvent(element, 'mouseenter', enter, adding);
 		bindEvent(element, 'mouseleave', leave, adding);
-		rem && remove(() => {
+		return () => {
 			bindEvent(element, 'mouseenter', enter, removing);
 			bindEvent(element, 'mouseleave', leave, removing);
-		})
-	} else if (rem) {
-		remove(noop)
+		}
+	} else {
+		return noop
 	}
 }
 
 // window events
 
-export function resize(callback, remove) {
-	bindWindow(_support.orientationChange ? ['resize', 'orientationchange'] : ['resize'], callback, remove)
+export function resize(callback) {
+	return bindWindow(_support.orientationChange ? ['resize', 'orientationchange'] : ['resize'], callback)
 }
 
-export function scroll(callback, remove) {
-	bindWindow(['scroll'], callback, remove)
+export function scroll(callback) {
+	return bindWindow(['scroll'], callback)
 }
 
-export function on(name, callback, remove) {
-	bindWindow(getName(name), callback, remove)
+export function on(name, callback) {
+	return bindWindow(getName(name), callback)
 }

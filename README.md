@@ -13,7 +13,7 @@ $ npm i --save dom-utility
 ## Usage
 
 ```js
-import {element} from "dom-utility"
+import {createElement, byId} from "dom-utility"
 
 const click = () => {alert("Hi!")};
 const styles = {border: "1px solid red", padding: 10};
@@ -21,7 +21,11 @@ let elm;
 
 // create element
 
-elm = element.createElement("div#elmId.first-class", {onClick: click, styles: styles}, byId("app"));
+elm = createElement(
+		"div#elmId.first-class", // tag name + id + className
+		{onClick: click, styles: styles}, // attributes, events, style
+		byId("app") // wrapper
+	);
 
 // alternatively
 
@@ -43,7 +47,7 @@ document.getElementById("app").appendChild(elm);
 + `Collection`
 + `createCollection(element, [context])` : Create new `Collection` class object.
 
-+ `page`
++ Page info
 	+ `pageWidth()`
 	+ `pageHeight()`
 	+ `scrollTop()`
@@ -54,7 +58,7 @@ document.getElementById("app").appendChild(elm);
 
 + `attribute(HTMLElement, name, [value])` : Set, get or remove `HTMLElement` attribute.
 
-+ `element`
++ DOM HTMLElement
 	+ `byId(selector)` : Wrapper for `document.getElementById()` function.
 	+ `byQuery(selector, [element = document])` : Wrapper for `document.querySelectorAll()` function.
 	+ `byQueryOne(selector, [element = document])` : Wrapper for `document.querySelector()` function.
@@ -69,7 +73,7 @@ document.getElementById("app").appendChild(elm);
 	+ `matches(HTMLElement, selector)` : `HTMLElement.matches()` wrapper and polyfill (if the browser does not support method)
 	+ `closest(HTMLElement, selector)` : `HTMLElement.closest()` wrapper and polyfill (if the browser does not support method)
 
-+ `classes`
++ Class name manipulations
 	+ `addClass(element, className)`
 	+ `removeClass(element, className)`
 	+ `hasClass(element, className, [callback])`
@@ -77,18 +81,19 @@ document.getElementById("app").appendChild(elm);
 	+ `toggleClass(element, className)`
 	+ `testToggleClass(dir, element, className)`
 	
-+ `style`
++ HTMLElement style
 	+ `styleName(name)`: Get valid vendor style name (for example opacity -> WebkitOpacity)
 	+ `setStyle(HTMLElement, name, value)`: Set element style
+	+ `getStyle(HTMLElement, name)`: Get element style
 	
-+ `events`
++ Events
 	+ `support(name)` : Check support `touch`, `orientationChange`, `passive`.
 	+ `ready(callback)` : Add the event `DOMContentLoaded` or call a function if the page was loaded.
 	+ `addNativeEvent(HTMLElement, name, callback, [capture = false])`
 	+ `removeNativeEvent(HTMLElement, name, callback, [capture = false])`
 	+ `addEvent(element, name, callback)`
 	+ `removeEvent(element, name, callback)`
-	+ `resize(callback, [remove])` : Add resize events (`resize`, `orientationchange`) to window element.
-	+ `scroll(callback, [remove])` : Add scroll event to window element.
-	+ `on(name, callback, [remove])` : Add event to window element.
-	+ `hover(element, enter, leave, [remove])`
+	+ `resize(callback)` : Add resize events (`resize`, `orientationchange`) to window element. Returns a function to remove event
+	+ `scroll(callback)` : Add scroll event to window element. Returns a function to remove event
+	+ `on(name, callback)` : Add event to window element. Returns a function to remove event
+	+ `hover(element, enter, leave)` : Returns a function to remove event

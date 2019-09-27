@@ -71,3 +71,7 @@ export function setStyle(element, name, value)
 		}
 	}
 }
+
+export function getStyle(element, name) {
+	return element != null && element.style && ( regExpCustomProp.test(name) ? element.style.getPropertyValue(name) : element.style[styleName(name)] ) || ""
+}
